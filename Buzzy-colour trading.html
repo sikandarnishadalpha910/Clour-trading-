@@ -120,10 +120,10 @@
       const isSuccess = Math.random() > 0.5;
 
       if (isSuccess) {
-        resultBox.textContent = `Success! You won with ${color} at ${level} level. 🎉`;
+        resultBox.textContent = `Success! You won with ₹{color} at ₹{level} level. 🎉`;
         resultBox.style.color = 'green';
       } else {
-        resultBox.textContent = `Failed! ${color} at ${level} level lost. ❌`;
+        resultBox.textContent = `Failed! ₹{color} at ₹{level} level lost. ❌`;
         resultBox.style.color = 'red';
       }
     }
