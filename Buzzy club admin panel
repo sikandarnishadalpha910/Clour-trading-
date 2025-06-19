@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wingo Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    input, select, button {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+      padding: 10px;
+    }
+
+    button {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .error { color: red; }
+    .success { color: green; }
+  </style>
+</head>
+<body>
+  <div class="login-box" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p id="loginError" class="error"></p>
+  </div>
+
+  <div class="admin-panel hidden" id="adminPanel">
+    <h2>🎮 Wingo Result Control</h2>
+
+    <label>⏱️ Select Game Duration</label>
+    <select id="duration">
+      <option value="30s">30 Seconds</option>
+      <option value="1m">1 Minute</option>
+      <option value="3m">3 Minutes</option>
+      <option value="5m">5 Minutes</option>
+    </select>
+
+    <label>🎨 Select Color</label>
+    <select id="color">
+      <option value="Red">Red</option>
+      <option value="Green">Green</option>
+      <option value="Violet">Violet</option>
+    </select>
+
+    <label>🔢 Select Number</label>
+    <select id="number">
+      <option value="">None</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+
+    <label>📊 Big/Small</label>
+    <select id="size">
+      <option value="">None</option>
+      <option value="Big">Big</option>
+      <option value="Small">Small</option>
+    </select>
+
+    <button onclick="submitResult()">✅ Post Result</button>
+    <p id="statusMsg" class="success"></p>
+  </div>
+
+  <script>
+    const correctUser = "sikandarNishad";
+    const correctPass = "Sikandarnishad2241";
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const error = document.getElementById("loginError");
+
+      if (user === correctUser && pass === correctPass) {
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+      } else {
+        error.innerText = "❌ Invalid credentials";
+      }
+    }
+
+    function submitResult() {
+      const duration = document.getElementById("duration").value;
+      const color = document.getElementById("color").value;
+      const number = document.getElementById("number").value;
+      const size = document.getElementById("size").value;
+
+      console.log("✅ Result Posted:", { duration, color, number, size });
+      document.getElementById("statusMsg").innerText = "✅ Result posted successfully!";
+
+      // 👇 Yahan Firebase save karne ka code lag sakta hai
+      // db.ref("results/" + duration).set({ color, number, size });
+    }
+  </script>
+</body>
+</html>
